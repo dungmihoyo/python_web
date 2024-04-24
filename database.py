@@ -1,4 +1,4 @@
-import pandas as pd 
+# import pandas as pd 
 import sqlite3 
 
 
@@ -8,7 +8,7 @@ query = """SELECT * FROM USER_INFOR"""
 query_insert =  """INSERT INTO USER_INFOR VALUES (?, ?, ?, ?, ?)"""
 cursor.execute(query) 
 data = cursor.fetchall( )
-print (data)
+# print (data)
 
 
 class User_Infor() : 
@@ -48,7 +48,7 @@ class User_Infor() :
     
     def exception_name(self, name ) :
         for i in name : 
-            if(ord(i) not in range (65, 90)): 
+            if(ord(i) not in range (97, 123)): 
                 print ( i)
                 return False 
         return True 
@@ -83,17 +83,16 @@ class User_Infor() :
         
 
 user = User_Infor() 
-# user.Check_Infor('Dung', 'Tran', 'dung@gmail.com', 'dung1', '12345')
-# print (user.set_name("Dũng"))
-print (user.exception_name(user.set_name("Dũng")))
-            
-# cursor.execute(query) 
-# data = cursor.fetchall( )
-# print (data)
+user.Check_Infor('Dung', 'Tran', 'dung@gmail.com', 'dung1', '12345')
+
        
         
 
 conn.close()
+        
+        
+
+
         
         
 
