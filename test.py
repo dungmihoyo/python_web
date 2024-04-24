@@ -1,5 +1,15 @@
 import tkinter as tk 
 import sqlite3
+import database
+
+# Lay du lieu tu database 
+conn = sqlite3.connect("user.db")
+cursor = conn.cursor( ) 
+
+
+query = '''SELECT * FROM USER_INFOR'''
+query = '''INSERT INTO USER_INFOR VALUES (?, ?, ?, ?, ?)'''
+
 
 
 
@@ -14,11 +24,16 @@ window_login.title("Login")
 # khoi tao cac bien nhan gia tri khi duoc chuyen vao 
 user_name = tk.StringVar( )
 pass_word  = tk.StringVar( )
+#khoi tao cac bien ve thong tin nguoi dung 
+first_name = tk.StringVar()
+last_name = tk.StringVar() 
+email = tk.StringVar()
 # khoi tao cac bien cho nguoi dung nhap ten moi vao 
 new_user = tk.StringVar() 
 new_pass = tk.StringVar()
-dict = {"dung123":"12345", 
-        "dung234":"23456"}
+
+
+
 
 # khoi tao nhan cua ten nguoi dang nhap va mat khau 
 user_name_task = tk.Label(window_login, text = "User Name: " ) 
@@ -43,13 +58,37 @@ def Add_infor ( ) :
     add.geometry("350x500")
     add.title("New account") 
     
+    # Tao lable nhap vao ho va ten 
+    label_first_name = tk.Label(add, text ="Firt Name")
+    label_last_name = tk.Label(add, text ="Last Name") 
+    label_email = tk.Label(add, text = "Email")
+    
+    #Tao thanh nhap vao ho va ten 
+    text_first_name = tk.Entry(add, textvariable=first_name) 
+    text_last_name = tk.Entry(add, textvariable=last_name) 
+    text_email = tk.Entry(add, textvariable=email) 
+
     #Tao label cho nguoi dung nhap vao ten 
     new_user_name = tk.Label(add, text = "New User Name :")
     new_pass_word = tk.Label(add, text = "New Pass Word :")
     
+    
     # Tao text bar cho nguoi dung nhap thong tin ca nhan 
     new_user_name_text = tk.Entry(add, textvariable=new_user)
     new_pass_word_text = tk.Entry(add, textvariable=new_pass) 
+
+
+
+    #set vi tri cho thanh nhap du lieu nguoi dung 
+    label_first_name.place(x = 60, y = 60) 
+    label_last_name.place(x = 60, y = 100) 
+    label_email.place(x = 60, y = 140) 
+    
+    text_first_name.place(x = 100, y = 60) 
+    text_last_name.place(x = 100, y = 100) 
+    text_email.place(x = 150, y = 140) 
+
+
 
     # Set vi tri cho tung thanh cong cu 
     new_user_name.place(x = 60, y = 60) 
@@ -57,6 +96,8 @@ def Add_infor ( ) :
     
     new_user_name_text.place(x = 150, y = 60) 
     new_pass_word_text.place(x = 150, y = 100) 
+    
+
     
     add_new_button = tk.Button(add, text="Create new", command=lambda: add.destroy())
     user_n = new_user.get()
@@ -100,3 +141,4 @@ massege = tk.Entry(root)
 massege.place(x = 50, y = 450)
 
 root.mainloop()
+
